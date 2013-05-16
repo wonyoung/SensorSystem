@@ -1,15 +1,19 @@
 package com.wonyoung.sensorsystem;
 
+import java.util.ArrayList;
+
 public class SensorSystem {
 
+	ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+	
 	public void register(Sensor sensor) {
-		// TODO Auto-generated method stub
-		
+		sensors.add(sensor);
 	}
 
 	public void warning() {
-		// TODO Auto-generated method stub
-		
+		for (Sensor s : sensors) {
+			s.blink();
+		}
 	}
 
 }

@@ -1,7 +1,7 @@
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 import com.wonyoung.sensorsystem.Sensor;
 import com.wonyoung.sensorsystem.SensorSystem;
