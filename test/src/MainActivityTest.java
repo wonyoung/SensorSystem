@@ -8,12 +8,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 import android.app.Activity;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.wonyoung.sensorsystem.MainActivity;
-import com.wonyoung.sensorsystem.R;
 
 
 @RunWith(RobolectricTestRunner.class)
@@ -25,17 +21,15 @@ public class MainActivityTest {
 				.create()
 				.get();
 		
-		ListView sensorList = (ListView) activity.findViewById(R.id.sensors_listview);
-		Button addButton = (Button) activity.findViewById(R.id.add_button);
-		
-		assertEquals(0, sensorList.getCount());
-		addButton.performClick();
-		assertEquals(1, sensorList.getCount());
-		
-		sensorList.layout(0, 0, 100, 1000);
-		
-		assertEquals(1, sensorList.getChildCount());
-		TextView sensorRow = (TextView) sensorList.getChildAt(0);
-		assertThat(sensorRow.getText().toString(), equalTo("Sensor 1"));
+		SensorSystemDriver driver = new SensorSystemDriver(activity);
+				
+		assertEquals(0, driver.sensors());
+		driver.addSensor();
+		assertEquals(1, driver.sensors());
+
+		driver.draw();
+
+		assertThat(driver.getSensorName(0), equalTo("Sensor 1"));
 	}
+	
 }
